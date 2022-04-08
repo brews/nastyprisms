@@ -2,7 +2,7 @@
 
 # nastyprisms
 
-A simple containerized command-line application to download, and preprocess daily PRISM climate fields into a single Zarr Store.
+A simple containerized command-line application to download and process daily PRISM climate fields into a single Zarr Store.
 
 ## Example
 

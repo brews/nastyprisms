@@ -15,7 +15,7 @@ docker run ghcr.io/brews/nastyprisms:0.1.0 \
   --lastyear 2000 \
   --variable "tmean" \
   --epsg "4326" \
-  --clipbox="minlon=-125.0,minlat=32.0,maxlon=-114.0,maxlat=43.0" \
+  --clipbox "minlon=-125.0,minlat=32.0,maxlon=-114.0,maxlat=43.0" \
   --outzarr "gs://myscratchbucket/prism-tmean-1999-2000.zarr"
 ```
 

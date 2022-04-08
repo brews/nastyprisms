@@ -9,8 +9,8 @@ A simple containerized command-line application to download and process daily PR
 This script is usually run as from container as part of a larger orchestrated workflow on Kubernetes, but you can also run this locally. For example, this downloads a range of years and clips to a bounding box around California after reprojecting the climate data to [EPSG:4326](https://epsg.io/4326):
 
 ```shell
-docker pull ghcr.io/brews/nastyprisms:0.1.0
-docker run ghcr.io/brews/nastyprisms:0.1.0 \
+docker pull ghcr.io/brews/nastyprisms:0.2.0
+docker run ghcr.io/brews/nastyprisms:0.2.0 \
   --firstyear 1999 \
   --lastyear 2000 \
   --variable "tmean" \

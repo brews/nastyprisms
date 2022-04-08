@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Fill out README.
+- Basic Argo Workflow example.
 ### Fixed
 - Corrected bad docstr.
 

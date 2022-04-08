@@ -19,6 +19,8 @@ docker run ghcr.io/brews/nastyprisms:0.1.0 \
   --outzarr "gs://myscratchbucket/prism-tmean-1999-2000.zarr"
 ```
 
+`./example-workflow.yaml` is an Argo Workflow using the `nastyprisms` container to download 3 separate variables in a way that balances reliable processing without beating the PRISM FTP server to death with requests.
+
 ## Installation
 
 Grab the latest copy of the container with `docker pull ghcr.io/brews/nastyprisms:latest`. If you're tinkering with the source code the `conda` virtual environment specs used for container builds are in `environment.yaml`. We recommend you build your virtual environment with `conda` because this depends on several difficult-to-compile geospatial libraries.

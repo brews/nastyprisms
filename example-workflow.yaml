@@ -1,0 +1,95 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: prism2zarr-
+  annotations:
+    workflows.argoproj.io/description: >-
+      Load daily PRISM variables, clip to CA bounding box, and output to 
+      single Zarr store.
+    workflows.argoproj.io/tags: zarr,prism,util,bil,climate
+    workflows.argoproj.io/version: '>= 3.1.0'
+spec:
+  entrypoint: main
+  templates:
+
+
+    - name: main
+      inputs:
+        parameters:
+          - name: firstyear
+            value: 1999
+          - name: lastyear
+            value: 2015
+      # So we don't kill the poor PRISM FTP server:
+      parallelism: 2
+      dag:
+        tasks:
+          - name: tmean
+            template: process-prism
+            arguments:
+              parameters:
+              - name: variable
+                value: tmean
+              - name: firstyear
+                value: "{{ inputs.parameters.firstyear }}"
+              - name: lastyear
+                value: "{{ inputs.parameters.lastyear }}"
+              - name: outzarr
+                value: "gs://scratch-170c63ec/{{ workflow.uid }}/prism-tmean-california-1999-2015.zarr"
+          - name: tmin
+            template: process-prism
+            arguments:
+              parameters:
+              - name: variable
+                value: tmin
+              - name: firstyear
+                value: "{{ inputs.parameters.firstyear }}"
+              - name: lastyear
+                value: "{{ inputs.parameters.lastyear }}"
+              - name: outzarr
+                value: "gs://scratch-170c63ec/{{ workflow.uid }}/prism-tmin-california-1999-2015.zarr"
+          - name: tmax
+            template: process-prism
+            arguments:
+              parameters:
+              - name: variable
+                value: tmax
+              - name: firstyear
+                value: "{{ inputs.parameters.firstyear }}"
+              - name: lastyear
+                value: "{{ inputs.parameters.lastyear }}"
+              - name: outzarr
+                value: "gs://scratch-170c63ec/{{ workflow.uid }}/prism-tmax-california-1999-2015.zarr"
+
+
+    - name: process-prism
+      inputs:
+        parameters:
+        - name: variable
+        - name: firstyear
+        - name: lastyear
+        - name: outzarr
+      container:
+        image: ghcr.io/brews/nastyprisms:0.1.0
+        command: ["/usr/local/bin/_entrypoint.sh", "python", "/opt/src/download_prism.py"]
+        args:
+          - "--firstyear={{ inputs.parameters.firstyear }}"
+          - "--lastyear={{ inputs.parameters.lastyear }}"
+          - "--variable={{ inputs.parameters.variable }}"
+          - "--outzarr={{ inputs.parameters.outzarr }}"
+          - "--epsg=4326"
+          - "--clipbox=minlon=-125.0,minlat=32.0,maxlon=-114.0,maxlat=43.0"
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: "500m"
+          limits:
+            memory: 2Gi
+            cpu: "2000m"
+      retryStrategy:
+        limit: 2
+        retryPolicy: "Always"
+        backoff:
+          duration: 120s
+          factor: 3
+      activeDeadlineSeconds: 43200

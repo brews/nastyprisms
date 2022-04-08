@@ -27,6 +27,10 @@ Grab the latest copy of the container with `docker pull ghcr.io/brews/nastyprism
 
 ## Support
 
-Source code is available online at https://github.com/brews/nastyprisms. This software is Open Source and available under the Apache License, Version 2.0. Please file bugs at https://github.com/brews/nastyprisms/issues. Feel free to fork the code and file a merge-request with bug fixes and improvements. Or just fork the code for yourself.
+Source code is available online at https://github.com/brews/nastyprisms. This software is Open Source and available under the Apache License, Version 2.0.
+
+Please file bugs at https://github.com/brews/nastyprisms/issues.
+
+Feel free to fork the code and file a merge-request with bug fixes and improvements. Or just fork the code for yourself.
 
 "nastyprisms" is a reference to Dan Meth's Frederator video ["Pink Floyd's Syd Barrett Visits His Accountant"](https://www.youtube.com/watch?v=YMNWHLPSgBE). It's the only thing I could think of at the time that references "prism".

@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] - 2022-04-08
 ### Added
 - Fill out README.
 - Basic Argo Workflow example.
@@ -15,5 +15,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unexpected keyword argument 'callback_timeout' TypeError with zarr and fsspec, gcsfs. ([#1](https://github.com/brews/nastyprisms/issues/1))
 
 ## [0.1.0] - 2022-04-08
-
 - The initial release.

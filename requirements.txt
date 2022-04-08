@@ -1,0 +1,9 @@
+# So dependencies show up in Github's dependency graph.
+dask
+fsspec
+gcsfs
+retry
+rioxarray
+xarray
+zarr
+python

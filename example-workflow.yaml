@@ -70,7 +70,7 @@ spec:
         - name: lastyear
         - name: outzarr
       container:
-        image: ghcr.io/brews/nastyprisms:0.1.0
+        image: ghcr.io/brews/nastyprisms:0.2.0
         command: ["/usr/local/bin/_entrypoint.sh", "python", "/opt/src/download_prism.py"]
         args:
           - "--firstyear={{ inputs.parameters.firstyear }}"

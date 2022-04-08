@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.0] - 2022-04-08
 ### Added
 - Fill out README.
-- Basic Argo Workflow example.
+- Basic Argo Workflow example in `./example-workflow.yaml`.
 ### Changed
 - Upgrade `gcsfs` to v2022.3.0. Required for fix to [#1](https://github.com/brews/nastyprisms/issues/1).
 ### Fixed

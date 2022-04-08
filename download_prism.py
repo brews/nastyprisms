@@ -5,7 +5,7 @@ Use from CLI like:
 
 python download_prism.py \
   --firstyear 1999 \
-  --lastyear 1999 \
+  --lastyear 2015 \
   --variable "tmean" \
   --clipbox="minlon=-125.0,minlat=32.0,maxlon=-114.0,maxlat=43.0" \
   --outzarr "prism-tmean-1999-2015.zarr"

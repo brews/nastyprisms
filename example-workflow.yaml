@@ -4,8 +4,8 @@ metadata:
   generateName: prism2zarr-
   annotations:
     workflows.argoproj.io/description: >-
-      Load daily PRISM variables, clip to CA bounding box, and output to 
-      single Zarr store.
+      Load daily PRISM variables (tmin, tmax, tmean) for range of years, clip 
+      to CA bounding box, and output each to their own Zarr store.
     workflows.argoproj.io/tags: zarr,prism,util,bil,climate
     workflows.argoproj.io/version: '>= 3.1.0'
 spec:

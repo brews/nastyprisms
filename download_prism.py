@@ -278,7 +278,7 @@ if __name__ == "__main__":
     }
 
     epsg_arg = args.epsg
-    if args.epsg.lower == "none":
+    if args.epsg.lower() == "none":
         epsg_arg = None
     preprocess_kwargs["project_epsg"] = epsg_arg
 

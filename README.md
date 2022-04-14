@@ -23,7 +23,13 @@ docker run ghcr.io/brews/nastyprisms:0.2.0 \
 
 ## Installation
 
-Grab the latest copy of the container with `docker pull ghcr.io/brews/nastyprisms:latest`. If you're tinkering with the source code the `conda` virtual environment specs used for container builds are in `environment.yaml`. We recommend you build your virtual environment with `conda` because this depends on several difficult-to-compile geospatial libraries.
+Grab the latest copy of the container with 
+
+```shell
+docker pull ghcr.io/brews/nastyprisms:latest
+```
+
+If you're tinkering with the source code the `conda` virtual environment specs used for container builds are in `environment.yaml`. We recommend you build your virtual environment with `conda` because this depends on several difficult-to-compile geospatial libraries.
 
 ## Support
 

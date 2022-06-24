@@ -9,7 +9,7 @@ on:
     - published
 
 env:
-  REGISTRY_NAME: ghcr.io
+  REGISTRY_NAME: ghcr.io/brews
   IMAGE_NAME: nastyprisms
 
 jobs:

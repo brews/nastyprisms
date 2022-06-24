@@ -1,42 +1,36 @@
 name: Build, push image
 
 on:
+  push:
+    branches:
+      - 'main'
   release:
     types:
     - published
 
+env:
+  REGISTRY_NAME: ghcr.io
+  IMAGE_NAME: nastyprisms
+
 jobs:
   buildpush:
     runs-on: ubuntu-latest
-    env:
-      HASH: $(git rev-parse --short "$GITHUB_SHA")
-      BRANCH: ${GITHUB_REF##*/}
     steps:
       - uses: actions/checkout@v2
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}
       - name: Docker login
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY_NAME }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set image release tag
-        env:
-          FULL_RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: |
-          echo "docker_tag=${FULL_RELEASE_TAG#v}" >> $GITHUB_ENV
-
-      - name: Set image name
-        run: |
-          echo "release_image_name=ghcr.io/$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]'):${{ env.docker_tag }}" >> $GITHUB_ENV
-
-      - name: Build container
-        run: |
-          docker build . -t "${{ env.release_image_name }}" \
-            --label "org.opencontainers.image.created=$(date --rfc-3339=ns)" \
-            --label "org.opencontainers.image.version=${{ env.docker_tag }}" \
-            --label "org.opencontainers.image.revision=${{ env.GITHUB_SHA }}"
-
-      - name: Push to registry
-        run: |
-          docker push "${{ env.release_image_name }}"
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
